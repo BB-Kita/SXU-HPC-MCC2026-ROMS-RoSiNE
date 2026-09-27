@@ -1,0 +1,71 @@
+     30  1  1            NCL, IPAL, IBARLAB 
+  0     255  255  255     1.00000   1.00000   1.00000   background
+  0       0    0    0     0.00000   0.00000   0.00000   foreground
+  1       0    0  255     0.0       0.0       1.0    
+  2      34   34  255     0.13333   0.13333   1.0    
+  3      51   51  255     0.2       0.2       1.0    
+  4      68   68  255     0.26666   0.26666   1.0    
+  5      85   85  255     0.33333   0.33333   1.0    
+  6     102  102  255     0.4       0.4       1.0    
+  7     119  119  255     0.46666   0.46666   1.0    
+  8     136  136  255     0.53333   0.53333   1.0    
+  9     153  153  255     0.6       0.6       1.0    
+ 10     170  170  255     0.66666   0.66666   1.0    
+ 11     187  187  255     0.73333   0.73333   1.0    
+ 12     204  204  255     0.8       0.8       1.0    
+ 13     221  221  255     0.86666   0.86666   1.0    
+ 14     238  238  255     0.93333   0.93333   1.0    
+ 15     255  255  255     1.0       1.0       1.0    
+ 16     255  238  238     1.0       0.93333   0.93333
+ 17     255  221  221     1.0       0.86666   0.86666
+ 18     255  204  204     1.0       0.8       0.8    
+ 19     255  187  187     1.0       0.73333   0.73333
+ 20     255  170  170     1.0       0.66666   0.66666
+ 21     255  153  153     1.0       0.6       0.6    
+ 22     255  136  136     1.0       0.53333   0.53333
+ 23     255  119  119     1.0       0.46666   0.46666
+ 24     255  102  102     1.0       0.4       0.4    
+ 25     255   85   85     1.0       0.33333   0.33333
+ 26     255   68   68     1.0       0.26666   0.26666
+ 27     255   51   51     1.0       0.2       0.2    
+ 28     255   34   34     1.0       0.13333   0.13333
+ 29     255   17   17     1.0       0.06666   0.06666
+ 30     255    0    0     1.0       0.0       0.00000
+  0      64   64   64     0.25098   0.11765   0.00000   land color
+  0     227  230  255     0.75509   0.87843   1.00000   water color
+  0       0    0    0     0.58824   0.80000   0.80000   polyline overlay color
+
+Color    iR   iG   iB        R         G         B
+
+!svn $Id: redblue30.pal 833 2017-01-24 22:20:16Z arango $
+!========================================================= Hernan G. Arango ===
+!  Copyright (c) 2002-2017 The ROMS/TOMS Group                              ===
+!    Licensed under a MIT/X style license                                   ===
+!    See License_ROMS.txt                                                   ===
+!==============================================================================
+!                                                                             !
+!  NCL      Number of color levels  not including the background, foreground, !
+!             land, water, and overlays colors.                               !
+!                                                                             !
+!  IPAL     Color value specification:                                        !
+!                                                                             !
+!             If IPAL=1, only the (iR,iG,iB) values are considered by the     !
+!             application program (other values are read as dummy variables). !
+!             The iR, iG, and iB values represent the red, green, and blue    !
+!             contributions (an integer value ranging from 0 to 255).         !
+!                                                                             !
+!             If IPAL=2, only the (R,G,B) values are considered by the        !
+!             application program (other values are read as dummy variables). !
+!             The R, G, and B values represent the red, green, and blue       !
+!             contributions (a real value ranging from 0.0 to 1.0).           !
+!                                                                             !
+!  IBARLAB  Labeling interval for color bands in the color bar. If            !
+!             IBARLAB=1, all color bands will be labeled.                     !
+!                                                                             !
+!  NOTICE:  The first color record is that for the background whereas the     !
+!  ------   second is that for the foreground.  The last the color are        !
+!           respectively for land, water, and polyline overlays (contour      !
+!           or vectors).                                                      !
+!                                                                             !
+!==============================================================================
+!

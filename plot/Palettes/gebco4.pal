@@ -1,0 +1,58 @@
+     9  3  1             NCL, IPAL, IBARLAB (see below)
+   0     255  255  255     1.00000   1.00000   1.00000      0.0  background
+   0       0    0    0     0.00000   0.00000   0.00000      0.0  foreground
+   5     225  252  247     0.88200   0.98800   0.96900     50.0
+   6     191  242  236     0.74900   0.94900   0.92500    100.0 
+   7     160  232  228     0.62700   0.91000   0.89400    200.0
+   8     131  222  222     0.51400   0.87100   0.87100    500.0
+   9     104  205  212     0.40800   0.80400   0.83100   1000.0
+  10      79  186  201     0.31000   0.73300   0.78800   2000.0
+  11      56  167  191     0.22000   0.65500   0.74900   3000.0 
+  12      34  146  181     0.13300   0.57300   0.71000   4000.0
+  13      15  124  171     0.05900   0.48600   0.67100   5000.0
+   0     241  195  122     0.94500   0.76500   0.47800      0.0  land color
+   0     255  255  255     1.00000   1.00000   1.00000      0.0  water color
+   0       0    0    0     0.00000   0.00000   0.00000      0.0  polyline overlay color
+
+ Color    iR   iG   iB        R         G         B
+
+Land Colors:
+
+   1     209  154   92     0.82000   0.60400   0.36100   -100.0
+   2     220  168  101     0.86300   0.65900   0.39600   -200.0
+   3     230  182  112     0.90200   0.71400   0.43900   -500.0
+   4     241  195  122     0.94500   0.76500   0.47800  -1000.0
+
+
+!svn $Id: gebco4.pal 833 2017-01-24 22:20:16Z arango $
+!========================================================= Hernan G. Arango ===
+!  Copyright (c) 2002-2017 The ROMS/TOMS Group                              ===
+!    Licensed under a MIT/X style license                                   ===
+!    See License_ROMS.txt                                                   ===
+!==============================================================================
+!                                                                             !
+!  NCL      Number of color levels  not including the background, foreground, !
+!             land, water, and overlays colors.                               !
+!                                                                             !
+!  IPAL     Color value specification:                                        !
+!                                                                             !
+!             If IPAL=1, only the (iR,iG,iB) values are considered by the     !
+!             application program (other values are read as dummy variables). !
+!             The iR, iG, and iB values represent the red, green, and blue    !
+!             contributions (an integer value ranging from 0 to 255).         !
+!                                                                             !
+!             If IPAL=2, only the (R,G,B) values are considered by the        !
+!             application program (other values are read as dummy variables). !
+!             The R, G, and B values represent the red, green, and blue       !
+!             contributions (a real value ranging from 0.0 to 1.0).           !
+!                                                                             !
+!  IBARLAB  Labeling interval for color bands in the color bar. If            !
+!             IBARLAB=1, all color bands will be labeled.                     !
+!                                                                             !
+!  NOTICE:  The first color record is that for the background whereas the     !
+!  ------   second is that for the foreground.  The last the color are        !
+!           respectively for land, water, and polyline overlays (contour      !
+!           or vectors).                                                      !
+!                                                                             !
+!==============================================================================
+!

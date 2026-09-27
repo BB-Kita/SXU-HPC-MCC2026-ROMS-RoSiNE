@@ -1,0 +1,27 @@
+#!/bin/bash -l
+#PBS -q batch
+##PBS -q lowmem
+#PBS -N real_bio_exp26beta
+#PBS -l procs=72  
+#PBS -l walltime=300:00:00
+#PBS -o out_roms.txt
+#PBS -e err_roms.txt
+
+#
+#define variables
+#
+NSLOTS=`cat ${PBS_NODEFILE} | wc -l`
+echo "This jobs is "$PBS_JOBID@$PBS_QUEUE 
+echo "             using processors : " ${NSLOTS}
+
+#
+#running jobs
+# 
+cd $PBS_O_WORKDIR
+
+cp ~/data/1_Input/bye24/bye24_frc_tides.nc .
+
+module load mvapich2/intel/1.8 netcdf-intel
+
+mpirun ./oceanM ROMS/External/ocean_bye24bio13.in &> logbioGT_exp26beta_0926.txt 
+

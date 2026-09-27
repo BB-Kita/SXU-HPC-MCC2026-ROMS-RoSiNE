@@ -1,0 +1,549 @@
+!  UMAINE CoSiNE 13 model
+!
+!svn $Id: bio_UMAINE13.in 588 2014-02-06 23:09:01Z kate $
+!========================================================= Hernan G. Arango ===
+!  Copyright (c) 2002-2012 The ROMS/TOMS Group                                !
+!    Licensed under a MIT/X style license                                     !
+!    See License_ROMS.txt                                                     !
+!==============================================================================
+!                                                                             !
+! Input parameters can be entered in ANY order, provided that the parameter   !
+! KEYWORD (usually, upper case) is typed correctly followed by "="  or "=="   !
+! symbols. Any comment lines are allowed and must begin with an exclamation   !
+! mark (!) in column one.  Comments may  appear to the right of a parameter   !
+! specification to improve documentation.  Comments will be ignored  during   !
+! reading.  Blank lines are also allowed and ignored. Continuation lines in   !
+! a parameter specification are allowed and must be preceded by a backslash   !
+! (\).  In some instances, more than one value is required for a parameter.   !
+! If fewer values are provided, the  last value  is assigned for the entire   !
+! parameter array.  The multiplication symbol (*),  without blank spaces in   !
+! between, is allowed for a parameter specification.  For example, in a two   !
+! grids nested application:                                                   !
+!                                                                             !
+!    AKT_BAK == 2*1.0d-6  2*5.0d-6              ! m2/s                        !
+!                                                                             !
+! indicates that the first two entries of array AKT_BAK,  in fortran column-  !
+! major order, will have the same value of "1.0d-6" for grid 1,  whereas the  !
+! next two entries will have the same value of "5.0d-6" for grid 2.           !
+!                                                                             !
+! In multiple levels of nesting and/or multiple connected domains  step-ups,  !
+! "Ngrids" entries are expected for some of these parameters.  In such case,  !
+! the order of the entries for a parameter is extremely important.  It  must  !
+! follow the same order (1:Ngrids) as in the state variable declaration. The  !
+! USER may follow the above guidelines for specifying his/her values.  These  !
+! parameters are marked by "==" plural symbol after the KEYWORD.              !
+!                                                                             !
+!  By: PENG XIU 12/2013                                                !
+!==============================================================================
+!
+! NOTICE: Input parameter units are specified within brackets and default 
+! ******  values are specified within braces.
+!
+! Switch to control the computation of biology within nested and/or multiple
+! connected grids.
+
+    Lbiology == T
+
+! Maximum number of iterations to achieve convergence of the nonlinear
+! solution.
+
+     BioIter == 1
+
+! Microzooplankton excretion rate to ammonium [1/day].   
+
+   reg1 == 0.2d0
+
+! Mesozooplankton excretion rate to ammonium [1/day].   
+ 
+   reg2 == 0.2d0
+
+! Maximum specific growth rate of small phytoplankton    
+!              [1/day] 
+
+   gmaxs1 == 2.0d0
+
+! Maximum specific growth rate of diatom [1/day]  
+
+   gmaxs2 == 2.5d0
+
+! Microzooplankton maximum grazing rate [1/day]   
+
+   beta1 == 1.6d0
+
+! Mesozooplankton maximum grazing rate [1/day]  
+  
+   beta2 == 0.65d0
+
+! Half saturation constant for microzooplankton grazing  
+!              [mmol_N/m3]
+
+   akz1 == 0.5d0
+
+! Half saturation constant for mesozooplankton grazing   
+!              [mmol_N/m3]
+
+   akz2 == 0.25d0
+
+! Fraction of shortwave radiation that is available for  
+!              photosyntesis [nondimensional]. 
+
+   PARfrac == 0.46d0
+
+! Initial slope of P-I curve of small phytoplankton
+!              [1/(Watts/m2)/day]
+
+   amaxs1 == 0.025d0
+
+! Initial slope of P-I curve of large phytoplankton
+!              [1/(Watts/m2)/day]
+
+   amaxs2 == 0.025d0
+   
+! PAR saturation onset parameter of small phytoplankton  
+!              [Watts/m2]                                    
+
+   parsats1 == 80.0d0
+
+! PAR saturation onset parameter of diatom [Watts/m2]    
+
+   parsats2 == 100.0d0
+
+! Ammonium inhibition parameter for small phytoplankton  
+!              [mmol_N/m3]
+
+   pis1 == 5.59d0
+
+! Ammonium inhibition parameter for diatom [mmol_N/m3]   
+
+   pis2 == 4.00d0
+
+! Half saturation concentration for nitrate uptake by    
+!              small phytoplankton [mmol_N/m3].
+
+   akno3s1 == 1.0d0
+
+! Half saturation concentration for nitrate uptake by    
+!              diatom [mmol_N/m3].                           
+
+   akno3s2 == 3.0d0
+
+! Half saturation concentration for ammonium uptake by   
+!              small phytoplankton [mmol_N/m3].              
+
+   aknh4s1 == 0.1d0
+
+! Half saturation concentration for ammonium uptake by   
+!              diatom [mmol_N/m3].                           
+
+   aknh4s2 == 0.3d0
+
+! Half saturation concentration for phosphate uptake by  
+!              small phytoplankton [mmol_P/m3]. 
+
+   akpo4s1 == 0.1d0
+
+! Half saturation concentration for phosphate uptake by  
+!              diatom [mmol_P/m3].
+
+   akpo4s2 == 0.2d0
+
+! Half saturation concentration for co2 uptake by 
+!              small phytoplankton [mmol_C/m3].              
+
+   akco2s1 == 500.0d0
+
+! Half saturation concentration for co2 uptake by 
+!              diatom [mmol_C/m3].
+
+   akco2s2 == 500.0d0
+
+! Half saturation constant for silicate uptake by 
+!              diatom [mmol_N/m3].                           
+
+   aksio4s2 == 4.5d0
+
+! Half saturation constant for oxidation 
+!               [mmol_O/m3].                           
+
+   akox == 30.0d0
+   
+! Light attenuation coefficient of water [1/m]    
+
+   ak1 == 0.046d0
+
+! Specific light attenuation coefficient for      
+!              phytoplankton [1/m/(mmol_N/m3)].              
+
+   ak2 == 0.030d0
+
+! Mesozooplankton specific mortality rate [1/day].      
+
+   bgamma0 == 0.10d0
+
+! Grazing efficiency of microzooplankton [nondimensional].
+
+   bgamma1 == 0.75d0
+
+! Grazing efficiency of mesozooplankton [nondimensional].
+
+   bgamma2 == 0.75d0
+
+! Death rate of small phytoplankton [1/day].     
+
+   bgamma3 == 0.2d0
+
+! Death rate of large phytoplankton [1/day].     
+
+   bgamma4 == 0.05d0
+
+! Decay rate of detritus [1/day].                
+
+   bgamma5 == 0.20d0
+
+!                                                
+
+   bgamma6 == 2.0d0
+
+! Nitrafication rate [1/day].                    
+
+   bgamma7 == 0.25d0
+
+! Sinking velocity of detritus [m/day].           
+
+   wsd == 15.0d0
+
+! Sinking velocity of detritus silicate [m/day].  
+
+   wsdsi == 25.0d0
+
+! Sinking velocity of large phytoplankton [m/day].
+
+   wsp == 1.0d0
+
+! Air pCO2 [ppmv].                                
+
+   pco2a == 380.0d0
+
+! Silicate to nitrogen ratio [mol_Si/mol_N].      
+
+   si2n == 1.2d0
+
+! Phosphorus to nitrogen ratio [mol_P/mol_N].     
+
+   p2n == 0.0625d0
+
+! Oxygen to nitrate ratio [mol_O2/mol_NO3].       
+
+   o2no == 8.625d0
+
+! Oxygen to ammonium ratio [mol_O2/mol_NH4].      
+
+   o2nh == 6.625d0
+
+! Carbon to nitrogen ratio [mol_C/mol_N].         
+
+   c2n == 7.300d0
+
+! Grazing preference for diatom [nondimensional]. 
+
+   ro5 == 0.70d0
+
+! Grazing preference for microzooplankton [nondimensional 
+
+   ro6 == 0.20d0
+
+! Grazing preference for detritus [nondimensional].      
+
+   ro7 == 0.10d0
+
+! Lateral, constant, harmonic/biharmonic horizontal diffusion of biological
+! tracer: [1:NBT,Ngrids].
+
+        TNU2 == 13*10.0d0                        ! m2/s
+        TNU4 == 13*10.0d0                        ! m4/s
+
+        ad_TNU2 == 13*0.0d0                      ! m2/s
+        ad_TNU4 == 13*0.0d0                      ! m4/s
+
+! Vertical mixing coefficients for biological tracers: [1:NBT,Ngrids].
+
+     AKT_BAK == 13*1.0d-6                        ! m2/s
+
+! Nudging/relaxation time scales, inverse scales will be computed
+! internally: [1:NBT,Ngrids].
+
+       TNUDG == 13*30.0d0                        ! days
+
+! Set lateral boundary conditions keyword. Notice that a value is expected
+! for each boundary segment per nested grid for each state variable.
+!
+! The biological tracer variables require [1:4,1:NBT,Ngrids] values. The
+! boundary order is: 1=west, 2=south, 3=east, and 4=north. That is,
+! anticlockwise starting at the western boundary.
+!
+! The keyword is case insensitive and usually has three characters. However,
+! it is possible to have compound keywords, if applicable. For example, the
+! keyword "RadNud" implies radiation boundary condition with nudging. This
+! combination is usually used in active/passive radiation conditions.
+!
+! NOTICE: It is possible to specify the lateral boundary conditions for
+! ======  all biological tracers in a compact form with a single entry.
+! If so, all the biological tracers are assumed to have the same boundary
+! condition as in the single entry.
+!
+!   Keyword    Lateral Boundary Condition Type
+!
+!   Cla        Clamped                                _____N_____     j=Mm
+!   Clo        Closed                                |     4     |
+!   Gra        Gradient                              |           |
+!   Nes        Nested                              1 W           E 3
+!   Nud        Nudging                               |           |
+!   Per        Periodic                              |_____S_____|
+!   Rad        Radiation                                   2          j=1
+!                                                   i=1         i=Lm
+!                   W       S       E       N
+!                   e       o       a       o
+!                   s       u       s       r
+!                   t       t       t       t
+!                           h               h
+!
+!                   1       2       3       4
+
+
+   LBC(isTvar) ==   Clo  RadNud  RadNud  RadNud \    !
+                    Clo  RadNud  RadNud  RadNud \    !
+                    Clo  RadNud  RadNud  RadNud \    !
+                    Clo  RadNud  RadNud  RadNud \    !
+                    Clo  RadNud  RadNud  RadNud \    !
+                    Clo  RadNud  RadNud  RadNud \    !
+                    Clo  RadNud  RadNud  RadNud \    !
+                    Clo  RadNud  RadNud  RadNud \    !
+                    Clo  RadNud  RadNud  RadNud \    !
+                    Clo  RadNud  RadNud  RadNud \    !
+                    Clo  RadNud  RadNud  RadNud \    !
+                    Clo  RadNud  RadNud  RadNud \    !
+                    Clo  RadNud  RadNud  RadNud      ! 
+
+                                                                                                           
+! Adjoint-based algorithms can have different lateral boundary                                             
+! conditions keywords.                                                                                     
+                                                                                                           
+ad_LBC(isTvar) ==   Clo     Per     Per     Per \    !
+                    Clo     Per     Per     Per \    !
+                    Clo     Per     Per     Per \    !
+                    Clo     Per     Per     Per \    !
+                    Clo     Per     Per     Per \    !
+                    Clo     Per     Per     Per \    !
+                    Clo     Per     Per     Per \    !
+                    Clo     Per     Per     Per \    !
+                    Clo     Per     Per     Per \    !
+                    Clo     Per     Per     Per \    !
+                    Clo     Per     Per     Per \    !
+                    Clo     Per     Per     Per \    !
+                    Clo     Per     Per     Per      !    
+
+
+! Logical switches (TRUE/FALSE) to specify which variables to process for                                  
+! tracers climatology: [NBT,Ngrids] values are expected. See glossary below                                
+! for details.                                                                                             
+                                                                                                           
+  LtracerCLM == 13*F                                                                                       
+                                                                                                           
+! Logical switches (TRUE/FALSE) to activate tracers point Sources/Sinks                                    
+! (like river runoff) and to specify which tracer variables to consider:                                   
+! [NBT,Ngrids] values are expected. See glossary below for details.                                        
+                                                                                                           
+  LtracerSrc == 13*F                                                                                       
+                                                                                                           
+! Logical switches (TRUE/FALSE) to activate writing of biological fields                                   
+! into HISTORY output file: [1:NBT,Ngrids].                                                                
+                                                                                                           
+Hout(idTvar) == 13*T    ! NO3, ...           biological tracer                                             
+Hout(idTsur) == 13*F    ! NO3_sflux, ...     surface tracer flux                                           
+                                                                                                           
+! Logical switches (TRUE/FALSE) to activate writing of time-averaged fields                                
+! into AVERAGE output file: [1:NBT,Ngrids].                                                                
+                                                                                                           
+Aout(idTvar) == 13*T    ! NO3, ...           biological tracer                                             
+                                                                                                           
+! Logical switches (TRUE/FALSE) to activate writing of time-averaged,                                      
+! biological tracer diagnostic terms into DIAGNOSTIC output file:                                          
+! [1:NBT,Ngrids].
+
+Dout(iTrate) == 13*T    ! NO3_rate, ...      time rate of change                                           
+Dout(iThadv) == 13*T    ! NO3_hadv, ...      horizontal total advection                                    
+Dout(iTxadv) == 13*T    ! NO3_xadv, ...      horizontal XI-advection                                       
+Dout(iTyadv) == 13*T    ! NO3_yadv, ...      horizontal ETA-advection                                      
+Dout(iTvadv) == 13*T    ! NO3_vadv, ...      vertical advection                                            
+Dout(iThdif) == 13*T    ! NO3_hdiff, ...     horizontal total diffusion                                    
+Dout(iTxdif) == 13*T    ! NO3_xdiff, ...     horizontal XI-diffusion                                       
+Dout(iTydif) == 13*T    ! NO3_ydiff, ...     horizontal ETA-diffusion                                      
+Dout(iTsdif) == 13*T    ! NO3_sdiff, ...     horizontal S-diffusion                                        
+Dout(iTvdif) == 13*T    ! NO3_vdiff, ...     vertical diffusion                                            
+                                                                                                           
+! Logical switches (TRUE/FALSE) to activate writing of time-averaged,                                      
+! biological processes diagnostics terms into DIAGNOSTIC output file [Ngrids].                             
+                                                                                                           
+Dout(iCOfx) == T        ! CO2_airsea         air-sea CO2 flux                                                                                       
+Dout(ipCO2) == T        ! pCO2               CO2 partial pressure                                          
+Dout(iO2fx) == T        ! O2_airsea          air-sea O2 flux                                               
+Dout(iPPro1) == T       ! P1_Production       primary production   
+Dout(iPPro2) == T       ! P1_Production       primary production                                          
+Dout(iNO3u) == T        ! NO3_uptake         NO3 uptake
+
+
+
+!
+!  GLOSSARY:
+!  =========
+!
+!------------------------------------------------------------------------------
+! Carbon, Silicon, Nitrogen Ecosystem (CoSiNE) Model Parameters.
+!------------------------------------------------------------------------------
+!
+!  Lbiology  Switch to control the computation of a particular module within
+!              nested and/or multiple connected grids. By default this switch
+!              is set to TRUE in "mod_scalars" for all grids.  Ngrids values
+!              are expected. The USER has the option, for example, to compute
+!              the biology in just one of the nested grids. If so, this switch
+!              needs to be consistent with the dimension parameter NBT in
+!              "mod_param".  In order to make the model more efficient in
+!              memory usage, NBT(:) should be zero in such grids.
+!
+!  BioIter   Maximum number of iterations to achieve convergence of
+!              the nonlinear solution.
+!
+!   reg1     Microzooplankton excretion rate to ammonium [1/day].      
+!
+!   reg2     Mesozooplankton excretion rate to ammonium [1/day].       
+!
+!   gmaxs1   Maximum specific growth rate of small phytoplankton       
+!              [1/day]                                                 
+!
+!   gmaxs2   Maximum specific growth rate of diatom [1/day]            
+!
+!   beta1    Microzooplankton maximum grazing rate [1/day]             
+!
+!   beta2    Mesozooplankton maximum grazing rate [1/day]              
+!
+!   akz1     Half saturation constant for microzooplankton grazing     
+!              [mmol_N/m3]                                             
+!
+!   akz2     Half saturation constant for mesozooplankton grazing      
+!              [mmol_N/m3]                                             
+!
+!   PARfrac  Fraction of shortwave radiation that is available for     
+!              photosyntesis [nondimensional].                         
+!
+!   amaxs1   Initial slope of P-I curve of small phytoplankton         
+!              [1/(Watts/m2)/day] 
+!
+!   amaxs2   Initial slope of P-I curve of large phytoplankton         
+!              [1/(Watts/m2)/day]                                      
+!
+!   parsats1 PAR saturation onset parameter of small phytoplankton     
+!              [Watts/m2]                                              
+!
+!   parsats2 PAR saturation onset parameter of diatom [Watts/m2]       
+!
+!   pis1     Ammonium inhibition parameter for small phytoplankton     
+!              [mmol_N/m3]                                             
+!
+!   pis2     Ammonium inhibition parameter for diatom [mmol_N/m3]      
+!
+!   akno3s1  Half saturation concentration for nitrate uptake by       
+!              small phytoplankton [mmol_N/m3].                        
+!
+!   akno3s2  Half saturation concentration for nitrate uptake by       
+!              diatom [mmol_N/m3].                                     
+!
+!   aknh4s1  Half saturation concentration for ammonium uptake by      
+!              small phytoplankton [mmol_N/m3].                        
+!
+!   aknh4s2  Half saturation concentration for ammonium uptake by      
+!
+!              diatom [mmol_N/m3].                                     
+!
+!   akpo4s1  Half saturation concentration for phosphate uptake by     
+!              small phytoplankton [mmol_P/m3].                        
+!
+!   akpo4s2  Half saturation concentration for phosphate uptake by    
+!              diatom [mmol_P/m3].                                     
+!
+!   akco2s1  Half saturation concentration for co2 uptake by     
+!              small phytoplankton [mmol_C/m3].                        
+!
+!   akco2s2  Half saturation concentration for co2 uptake by      
+!              diatom [mmol_C/m3].                                     
+!
+!   aksio4s2 Half saturation constant for silicate uptake by       
+!              diatom [mmol_N/m3].                                     
+!
+!   ak1      Light attenuation coefficient of water [1/m]              
+!
+!   ak2      Specific light attenuation coefficient for      
+!              phytoplankton [1/m/(mmol_N/m3)].                        
+!
+!   bgamma0   Mesozooplankton specific mortality rate [1/day].         
+!
+!   bgamma1   Grazing efficiency of microzooplankton [nondimensional]. 
+!
+!   bgamma2   Grazing efficiency of mesozooplankton [nondimensional].  
+!
+!   bgamma3   Death rate of small phytoplankton [1/day].               
+!
+!   bgamma4   Death rate of large phytoplankton [1/day].               
+!
+!   bgamma5   Decay rate of detritus [1/day].                          
+!
+!   bgamma6                                                            
+!
+!   bgamma7   Nitrafication rate [1/day].                              
+!
+!   wsd      Sinking velocity of detritus [m/day].                     
+!
+!   wsdsi    Sinking velocity of detritus silicate [m/day].            
+!
+!   wsp      Sinking velocity of large phytoplankton [m/day].          
+!
+!   pco2a    Air pCO2 [ppmv].                                          
+!
+!   si2n     Silicate to nitrogen ratio [mol_Si/mol_N].                
+!
+!   p2n      Phosphorus to nitrogen ratio [mol_P/mol_N].               
+!
+!   o2no     Oxygen to nitrate ratio [mol_O2/mol_NO3].                 
+!
+!   o2nh     Oxygen to ammonium ratio [mol_O2/mol_NH4].                
+!
+!   c2n      Carbon to nitrogen ratio [mol_C/mol_N].                   
+!
+!   ro5      Grazing preference for diatom [nondimensional].           
+!
+!   ro6      Grazing preference for microzooplankton [nondimensional]
+!
+!   ro7      Grazing preference for detritus [nondimensional].  
+!
+!  TNU2      Lateral, Laplacian, constant, mixing coefficient (m2/s) for
+!            biological tracer variables; [1:NBT,1:Ngrids] values are
+!            expected.  If variable horizontal diffusion is activated, TNU2
+!            is the mixing coefficient for the largest grid-cell in the domain.
+!
+!  TNU4      Lateral, biharmonic, constant, mixing coefficient (m4/s) for
+!            biological tracer variables; [1:NBT,1:Ngrids] values are
+!            expected.  If variable horizontal diffusion is activated, TNU4
+!            is the mixing coefficient for the largest grid-cell in the domain.
+!
+!  AKT_BAK   Background vertical mixing coefficient (m2/s) for biological
+!              tracer variables, [1:NBT,1:Ngrids] values are expected.
+!
+!  TNUDG     Nudging time scale (days), [1:NBT,1:Ngrids].  Inverse scale will
+!              be computed internally.
+!
+!  Hout      Logical switches (T/F) to write out biological data into output
+!              NetCDF files:
+!
+!            History/Average file, [1:NBT,1:Ngrids] values are expected:
+!
+!              Hout(idTvar)     biological tracers
+!              Hout(idTsur)     biological tracers surface flux

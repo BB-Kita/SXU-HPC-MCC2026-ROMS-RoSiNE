@@ -1,0 +1,31 @@
+# MCC runtime data and generated results
+runs/
+Inputfiles
+Inputfiles/
+output/
+outputs/
+
+# Executables, compiler output, and profiling artifacts
+oceanM
+*.o
+*.obj
+*.mod
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+
+# Logs and scheduler output
+*.log
+*.out
+slurm-*
+
+# Local editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*~
+*.swp
+*.swo
