@@ -1,12 +1,13 @@
-<<<<<<< HEAD
-# MCC2026 ROMS-CoSiNE 交付包
-
+# MCC20268865 SXU-HPC 登媏郎队 ROMS-CoSiNE 决赛代码仓库
+PS：大量
 ## 最佳结果
 
 | Job | 节点 | real | 完整输入 | 官方验证 |
 |---|---|---:|---|---|
 | `119103481` | `j04r2n[08-11]` | `1622.705s` | `NTIMES=2592,12960` | `26/26 PASS` |
-
+## 决赛成绩
+参赛队伍 24支 
+名次：第四名
 ## 核心配置
 
 - 4 节点、64 MPI rank、每 rank 2 OpenMP 线程。
@@ -130,8 +131,9 @@ sha256sum -c SHA256SUMS
 
 ## 源码与使用约束
 
-复现比赛结果时保持物理公式、网格规模、积分时间、时间步长、生态模块和输出设置不变。具体约束见 [RUN_INSTRUCTIONS.md](RUN_INSTRUCTIONS.md)。ROMS 许可说明见 [ROMS/License_ROMS.txt](ROMS/License_ROMS.txt)，其他随附代码应同时遵循各自的许可声明。
-=======
-# SXU-HPC-MCC2026-ROMS-RoSiNE
-山西某双一流高校登媏郎队决赛(大量AI预警)
->>>>>>> origin/main
+复现比赛结果时保持物理公式、网格规模、积分时间、时间步长、生态模块和输出设置不变。
+具体约束见 [RUN_INSTRUCTIONS.md](RUN_INSTRUCTIONS.md)。
+ROMS 许可说明见 [ROMS/License_ROMS.txt](ROMS/License_ROMS.txt)
+其他随附代码同时遵循各自的许可声明
+
+
