@@ -1,5 +1,5 @@
 # MCC20268865 SXU-HPC 登媏郎队 ROMS-CoSiNE 决赛代码仓库
-PS：大量
+PS：大量AI使用（
 ## 最佳结果
 
 | Job | 节点 | real | 完整输入 | 官方验证 |
