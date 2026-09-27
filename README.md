@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # MCC2026 ROMS-CoSiNE 交付包
 
 ## 最佳结果
@@ -130,3 +131,7 @@ sha256sum -c SHA256SUMS
 ## 源码与使用约束
 
 复现比赛结果时保持物理公式、网格规模、积分时间、时间步长、生态模块和输出设置不变。具体约束见 [RUN_INSTRUCTIONS.md](RUN_INSTRUCTIONS.md)。ROMS 许可说明见 [ROMS/License_ROMS.txt](ROMS/License_ROMS.txt)，其他随附代码应同时遵循各自的许可声明。
+=======
+# SXU-HPC-MCC2026-ROMS-RoSiNE
+山西某双一流高校登媏郎队决赛(大量AI预警)
+>>>>>>> origin/main
